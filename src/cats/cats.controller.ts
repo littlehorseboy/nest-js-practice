@@ -1,25 +1,11 @@
 import {
   Controller, HttpCode, Header, Param, Query, Redirect,
-  Get, Post
+  Get, Post,
+  Req, Request, Headers
 } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
-
-  @Get()
-  public findAll(): string {
-    return 'This action returns all cats'
-  }
-
-  @Get(':id')
-  public findOne(@Param('id') id: string): string {
-    return `This action returns a #${id} cat`;
-  }
-
-  @Post()
-  public create(): string {
-    return 'This action adds a new cat';
-  }
 
   @Post('create204')
   @HttpCode(204)
@@ -44,6 +30,26 @@ export class CatsController {
     if (version && version === '5') {
       return { url: 'https://docs.nestjs.com/v5/' };
     }
+  }
+
+  @Get('getHeaders')
+  getHeaders(@Req() request: Request): Headers {
+    return request.headers;
+  }
+
+  @Get(':id')
+  public findOne(@Param('id') id: string): string {
+    return `This action returns a #${id} cat`;
+  }
+
+  @Get()
+  public findAll(): string {
+    return 'This action returns all cats'
+  }
+
+  @Post()
+  public create(): string {
+    return 'This action adds a new cat';
   }
 
 }
