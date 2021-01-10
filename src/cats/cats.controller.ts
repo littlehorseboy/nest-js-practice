@@ -1,10 +1,20 @@
 import {
-  Controller, HttpCode, Header, Query, Redirect,
+  Controller, HttpCode, Header, Param, Query, Redirect,
   Get, Post
 } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
+
+  @Get()
+  public findAll(): string {
+    return 'This action returns all cats'
+  }
+
+  @Get(':id')
+  public findOne(@Param('id') id: string): string {
+    return `This action returns a #${id} cat`;
+  }
 
   @Post()
   public create(): string {
@@ -21,11 +31,6 @@ export class CatsController {
   @Header('Cache-Control', 'no-store')
   public createCacheControlNoStore(): string {
     return 'This action adds a new cat';
-  }
-
-  @Get()
-  public findAll(): string {
-    return 'This action returns all cats'
   }
 
   @Get('ab*cd')
