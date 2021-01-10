@@ -13,4 +13,9 @@ export class CatsController {
     return 'This action returns all cats'
   }
 
+  @Get('ab*cd')
+  public wildcard(): string {
+    return 'This route uses a wildcard';
+  }
+
 }
