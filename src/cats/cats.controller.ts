@@ -33,4 +33,12 @@ export class CatsController {
     return 'This route uses a wildcard';
   }
 
+  @Get('getDocs')
+  @Redirect('https://docs.nestjs.com')
+  public getDocs(@Query('version') version: string) {
+    if (version && version === '5') {
+      return { url: 'https://docs.nestjs.com/v5/' };
+    }
+  }
+
 }
