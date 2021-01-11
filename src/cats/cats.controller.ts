@@ -3,6 +3,7 @@ import {
   Get, Post,
   Req, Request, Headers
 } from '@nestjs/common';
+import { Observable, of } from 'rxjs';
 
 @Controller('cats')
 export class CatsController {
@@ -10,6 +11,11 @@ export class CatsController {
   @Get('getArray')
   public async getArray(): Promise<any[]> {
     return [];
+  }
+
+  @Get('getObservable')
+  public getObservable(): Observable<any[]> {
+    return of([]);
   }
 
   @Post('create204')
