@@ -7,6 +7,11 @@ import {
 @Controller('cats')
 export class CatsController {
 
+  @Get('getArray')
+  public async getArray(): Promise<any[]> {
+    return [];
+  }
+
   @Post('create204')
   @HttpCode(204)
   public create204(): string {
